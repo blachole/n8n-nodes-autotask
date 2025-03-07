@@ -38,6 +38,7 @@ import { productFields } from './resources/products/description';
 import { ticketFields } from './resources/tickets/description';
 import { timeEntryFields } from './resources/timeEntries/description';
 import { addOperationsToResource } from './helpers/resource-operations.helper';
+import { contractFields } from './resources/contracts/description';
 
 /**
  * Autotask node implementation
@@ -83,6 +84,7 @@ export class Autotask implements INodeType {
 			...addOperationsToResource(resourceFields, { resourceName: 'resource' }),
 			...addOperationsToResource(ticketFields, { resourceName: 'ticket' }),
 			...addOperationsToResource(timeEntryFields, { resourceName: 'timeEntry' }),
+			...addOperationsToResource(contractFields), { resourceName: 'contract'},
 			...searchFilterDescription,
 			...searchFilterOperations,
 		],
@@ -119,6 +121,8 @@ export class Autotask implements INodeType {
 				return executeTicketOperation.call(this);
 			case 'timeEntry':
 				return executeTimeEntryOperation.call(this);
+			case 'contract':
+				return executeContractOperation.call(this);
 			default:
 				throw new NodeOperationError(
 					this.getNode(),

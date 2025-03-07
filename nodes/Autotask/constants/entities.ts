@@ -32,6 +32,10 @@ export const AUTOTASK_ENTITIES: IEntityMetadata[] = [
 	// TimeEntry entity and its attachment
 	{ name: 'TimeEntry', operations: { [OperationType.CREATE]: 'self', [OperationType.UPDATE]: 'self', [OperationType.QUERY]: 'self', [OperationType.DELETE]: 'self', [OperationType.COUNT]: 'self' }, hasUserDefinedFields: true },
 	{ name: 'TimeEntryAttachment', childOf: 'TimeEntry', subname: 'Attachment', isAttachment: true, operations: { [OperationType.CREATE]: 'parent', [OperationType.DELETE]: 'parent' } },
+	// Contracts entity 
+	{ name: 'Contract', operations: { [OperationType.CREATE]: 'self', [OperationType.UPDATE]: 'self', [OperationType.QUERY]: 'self', [OperationType.DELETE]: 'self', [OperationType.COUNT]: 'self' }, hasUserDefinedFields: true },
+	{ name: 'ContractServiceAdjustments', childOf: 'Contract', subname: 'ServiceAdj', parentIdField: 'contractID', operations: { [OperationType.CREATE]: 'parent', [OperationType.UPDATE]: 'parent', [OperationType.QUERY]: 'self', [OperationType.DELETE]: 'parent', [OperationType.COUNT]: 'self' } },
+	{ name: 'ContractServices', childOf: 'Contract', subname: 'Services', parentIdField: 'contractID', operations: { [OperationType.CREATE]: 'parent', [OperationType.UPDATE]: 'parent', [OperationType.QUERY]: 'self', [OperationType.DELETE]: 'parent', [OperationType.COUNT]: 'self' } },
 ];
 
 /**
